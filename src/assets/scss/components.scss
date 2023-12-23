@@ -1,0 +1,44 @@
+/* InputText */
+.p-inputtext {
+    height: 45px;
+    border-color: $border-gray;
+
+    &:hover {
+        border-color: $border-gray;
+    }
+
+    &:focus {
+        box-shadow: none;
+        border: 1px solid $green;
+    }
+}
+
+/* Button */
+.p-button {
+    height: 45px;
+    border-radius: 5px;
+
+    &:focus{
+        box-shadow: none;
+    }
+}
+
+/* Define a largura da barra de rolagem */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Define a altura da alça da barra de rolagem */
+::-webkit-scrollbar-thumb {
+    height: 5px;
+}
+
+/* Define a cor da barra de rolagem */
+::-webkit-scrollbar-track {
+    background-color: $green;
+}
+
+/* Define a cor da alça da barra de rolagem */
+::-webkit-scrollbar-thumb {
+    background-color: $white;
+}
