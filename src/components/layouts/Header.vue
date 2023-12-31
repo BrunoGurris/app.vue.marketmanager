@@ -1,32 +1,44 @@
 <template>
   <div id="header" class="d-flex align-items-center">
-    <h4 id="header-title">Nome</h4>
+    <h4 id="header-title">{{ pageName }}</h4>
   </div>
 </template>
   
-<!-- <script setup lang="ts">
-import { watch, ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+<script>
+export default {
+  name: 'Header',
 
-const router = useRouter()
-let pageName = ref(router.currentRoute.value.path)
+  data() {
+    return {
+      pageName: '',
+    }
+  },
 
-const pagesNames: Record<string, string> = {
-  '/': 'Dashboard',
-  '/lojas': 'Lojas',
+  methods: {
+    getPageName() {
+      const routeMapping = {
+        '/': 'Dashboard',
+        '/lojas': 'Lojas',
+      };
+
+      const currentPage = this.$route.path
+      const pageName = routeMapping[currentPage]
+
+      this.pageName = pageName
+    }
+  },
+
+  created() {
+    this.getPageName()
+  },
+
+  watch: {
+    '$route'(to, from) {
+      this.getPageName()
+    }
+  },
 }
-
-const findPageName = () => {
-  const newPath = router.currentRoute.value.path;
-  const newText = pagesNames[newPath];
-  if (newText) {
-    pageName.value = newText;
-  }
-};
-
-watch(() => router.currentRoute.value.path, findPageName);
-onMounted(findPageName)
-</script> -->
+</script>
   
 <style lang="scss" scoped>
 #header {
