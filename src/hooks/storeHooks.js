@@ -7,3 +7,11 @@ export async function storeListHook() {
     return error.response
   }
 }
+
+export async function storeCreateHook(formStoreCreate) {
+  try {
+    return await api.post('/stores', formStoreCreate)
+  } catch (error) {
+    return error.response
+  }
+}
