@@ -4,10 +4,10 @@
       <Button @click="openModalCreateStore()" label="Adicionar" rounded />
     </div>
     <div id="pageContent">
-      <TableStores :stores="stores" />
+      <TableStores :stores="stores" :loading="loading" />
     </div>
 
-    <ModalCreateStore ref="modalCreateStore" />
+    <ModalCreateStore :stores="stores" ref="modalCreateStore" />
   </div>
 </template>
 
@@ -27,15 +27,18 @@ export default {
   data() {
     return {
       stores: [],
+      loading: false
     }
   },
 
   methods: {
     async listStores() {
+      this.loading = true
       const response = await storeListHook()
 
       if (response.status == 200) {
         this.stores = response.data
+        this.loading = false
       } else {
         this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
       }

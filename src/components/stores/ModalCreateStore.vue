@@ -27,6 +27,8 @@ import { storeCreateHook } from '@/hooks/storeHooks'
 export default {
   name: 'ModalCreateStore',
 
+  props: ['stores'],
+
   data() {
     return {
       visible: false,
@@ -50,6 +52,7 @@ export default {
       const response = await storeCreateHook(this.formCreateStore)
 
       if (response.status == 201) {
+        this.stores.unshift(response.data)
         this.$toast.add({ severity: 'success', summary: 'Sucesso', detail: 'Loja adicionada com sucesso!', life: 3000 })
         this.closeModal()
       } else {

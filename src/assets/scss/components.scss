@@ -23,6 +23,12 @@
     }
 }
 
+/* Datatable */
+.p-datatable-loading-overlay{
+    background: rgba(255, 255, 255, 0.63);
+}
+
+
 /* Define a largura da barra de rolagem */
 ::-webkit-scrollbar {
     width: 5px;
@@ -33,12 +39,12 @@
     height: 5px;
 }
 
-/* Define a cor da barra de rolagem */
+/* Define a cor da barra de rolagem */  
 ::-webkit-scrollbar-track {
-    background-color: $green;
+    background-color: gainsboro;
 }
 
 /* Define a cor da alça da barra de rolagem */
 ::-webkit-scrollbar-thumb {
-    background-color: $white;
+    background-color: gray;
 }

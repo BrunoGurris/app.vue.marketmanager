@@ -60,7 +60,8 @@ export default {
 <style lang="scss" scoped>
 #sidebar {
   width: 250px;
-  height: 100%;
+  height: 100vh;
+  position: fixed;
   background: $green;
   overflow: auto;
 

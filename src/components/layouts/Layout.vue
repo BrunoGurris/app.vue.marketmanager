@@ -29,7 +29,11 @@ export default {
 
 #layout-content {
   width: calc(100% - 250px);
+
+  margin-left: 250px;
   padding: 20px;
+
+  overflow: auto;
 }
 
 </style>
