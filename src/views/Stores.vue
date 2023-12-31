@@ -4,7 +4,7 @@
       <Button label="Adicionar" rounded />
     </div>
     <div id="pageContent">
-      <!-- <TableStores :stores="stores" /> -->
+      <TableStores :stores="stores" />
     </div>
 
     <!-- <ModalCreateStore ref="modalCreateStore" /> -->
@@ -12,6 +12,38 @@
 </template>
 
 <script>
+import TableStores from '@/components/stores/TableStores.vue'
+import { storeListHook } from '@/hooks/storeHooks'
+
+export default {
+  name: 'Stores',
+
+  components: {
+    TableStores
+  },
+
+  data() {
+    return {
+      stores: [],
+    }
+  },
+
+  methods: {
+    async handleListStore() {
+      const response = await storeListHook()
+
+      if (response.status == 200) {
+        this.stores = response.data
+      } else {
+        this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
+      }
+    }
+  },
+
+  created() {
+    this.handleListStore()
+  }
+}
 </script>
 
 <style lang="scss" scoped>
