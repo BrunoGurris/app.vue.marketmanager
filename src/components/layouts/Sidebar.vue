@@ -4,55 +4,58 @@
       <img id="sidebar-logo" src="@/assets/images/logo2.png" width="180" height="45">
     </div>
 
-    <!-- <div class="sidebar-menu" v-for="(menuGroup, index) in menuGroups" :key="index">
+    <div class="sidebar-menu" v-for="(menuGroup, index) in menuGroups" :key="index">
       <div class="sidebar-menu-title">{{ menuGroup.title }}</div>
-      <div @click="router.push(item.route)" class="sidebar-menu-item" v-for="(item, idx) in menuGroup.items" :key="idx">
+      <div @click="$router.push(item.route)" class="sidebar-menu-item" v-for="(item, idx) in menuGroup.items" :key="idx">
         <i :class="item.icon" class="sidebar-menu-item-icon"></i>{{ item.page }}
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
-<!-- <script>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+<script>
+export default {
+  name: 'Sidebar',
 
-const router = useRouter()
-
-const menuGroups = ref([
-  {
-    title: 'Menu',
-    items: [{
-      page: 'Dashboard',
-      icon: 'bi bi-grid',
-      route: '/'
-    },
-    {
-      page: 'Cupons',
-      icon: 'bi bi-receipt',
-      route: '/cupons'
-    },
-    {
-      page: 'Lojas',
-      icon: 'bi bi-shop-window',
-      route: '/lojas'
-    }]
-  },
-  {
-    title: 'Funções',
-    items: [{
-      page: 'Consultar preço',
-      icon: 'bi bi-search',
-      route: '/consulta-preco'
-    },
-    {
-      page: 'Comparação',
-      icon: 'bi bi-shuffle',
-      route: '/comparacao'
-    }]
+  data() {
+    return {
+      menuGroups: [
+        {
+          title: 'Menu',
+          items: [{
+            page: 'Dashboard',
+            icon: 'bi bi-grid',
+            route: '/'
+          },
+          {
+            page: 'Cupons',
+            icon: 'bi bi-receipt',
+            route: '/cupons'
+          },
+          {
+            page: 'Lojas',
+            icon: 'bi bi-shop-window',
+            route: '/lojas'
+          }]
+        },
+        {
+          title: 'Funções',
+          items: [{
+            page: 'Consultar preço',
+            icon: 'bi bi-search',
+            route: '/consulta-preco'
+          },
+          {
+            page: 'Comparação',
+            icon: 'bi bi-shuffle',
+            route: '/comparacao'
+          }]
+        }
+      ]
+    }
   }
-])
-</script> -->
+}
+</script>
 
 <style lang="scss" scoped>
 #sidebar {
@@ -91,8 +94,12 @@ const menuGroups = ref([
       padding-left: 35px;
 
       &:hover {
-        padding-left: 40px;
         font-weight: bold;
+      }
+
+      &:hover {
+        transition: 0.5s;
+        padding-left: 40px;
         background: $green-hover;
         cursor: pointer;
       }
