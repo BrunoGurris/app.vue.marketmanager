@@ -15,3 +15,19 @@ export async function storeCreateHook(formStoreCreate) {
     return error.response
   }
 }
+
+export async function storeEditHook(formStoreEdit, id) {
+  try {
+    return await api.put(`/stores/${id}`, formStoreEdit)
+  } catch (error) {
+    return error.response
+  }
+}
+
+export async function storeDeleteHook(id) {
+  try {
+    return await api.delete(`/stores/${id}`)
+  } catch (error) {
+    return error.response
+  }
+}

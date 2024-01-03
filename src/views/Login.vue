@@ -62,6 +62,7 @@ export default {
       const response = await authLoginHook(this.formAuthLogin)
 
       if (response.status == 200) {
+        localStorage.setItem('_token', response.data.token)
         this.$toast.add({ severity: 'success', summary: 'Sucesso', detail: 'Acesso realizado com sucesso!', life: 3000 })
         this.$router.push('/')
       } else {

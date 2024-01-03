@@ -24,6 +24,16 @@
 }
 
 /* Datatable */
+.p-datatable {
+    font-size: 15px;
+}
+
+.p-datatable-thead {
+    th {
+        background: $white;
+    }
+}
+
 .p-datatable-loading-overlay{
     background: rgba(255, 255, 255, 0.63);
 }

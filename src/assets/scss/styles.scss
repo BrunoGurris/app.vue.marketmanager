@@ -1,2 +1,20 @@
 @import './components.scss';
 @import './variables.scss';
+
+.button-icon-edit {
+    font-size: 20px;
+    color: $blue;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.button-icon-delete {
+    font-size: 20px;
+    color: $red;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
