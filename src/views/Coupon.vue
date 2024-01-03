@@ -1,27 +1,34 @@
 <template>
   <div>
     <div class="d-flex justify-content-end align-items-center">
-      <Button @click="openModalCreateStore()" label="Adicionar" rounded />
+      <Button @click="openModalCreateCoupon()" label="Adicionar" />
     </div>
     <div id="pageContent">
-      asdasdasd
+      <ModalCreateCoupon ref="modalCreateCoupon" />
     </div>
   </div>
 </template>
 
 <script>
+import ModalCreateCoupon from '@/components/coupons/ModalCreateCoupon.vue';
+
 export default {
   name: 'Coupon',
 
   components: {
+    ModalCreateCoupon,
   },
 
   data() {
     return {
+      data: '',
     }
   },
 
   methods: {
+    openModalCreateCoupon() {
+      this.$refs.modalCreateCoupon.openModal()
+    }
   },
 
   created() {

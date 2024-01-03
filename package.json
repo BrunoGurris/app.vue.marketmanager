@@ -15,7 +15,9 @@
     "primevue": "^3.45.0",
     "sass": "^1.69.5",
     "vue": "^3.3.11",
-    "vue-router": "^4.2.5"
+    "vue-qrcode-reader": "^5.5.1",
+    "vue-router": "^4.2.5",
+    "vue3-qr-reader": "^1.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
