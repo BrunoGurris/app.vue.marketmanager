@@ -18,6 +18,7 @@ export default {
     getPageName() {
       const routeMapping = {
         '/': 'Dashboard',
+        '/cupons': 'Cupons',
         '/lojas': 'Lojas',
       };
 
