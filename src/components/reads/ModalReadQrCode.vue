@@ -3,7 +3,7 @@
     <Dialog v-model:visible="visible" header="Leitor QR Code" :style="{ width: '50rem' }"
       :breakpoints="{ '1199px': '75vw', '575px': '90vw' }" :modal="true" position="top" :draggable="false">
       <div>
-        <div class="center stream col-5">
+        <div class="center stream">
           <qrcode-stream @detect="onDecode">
             <div style="color: red;" class="frame"></div>
           </qrcode-stream>
