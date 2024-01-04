@@ -4,34 +4,53 @@
       <Button @click="openModalCreateCoupon()" label="Adicionar" />
     </div>
     <div id="pageContent">
-      <ModalCreateCoupon ref="modalCreateCoupon" />
+      <TableCoupons :coupons="coupons" :loading="loading" />
     </div>
+
+    <ModalCreateCoupon ref="modalCreateCoupon" />
   </div>
 </template>
 
 <script>
-import ModalCreateCoupon from '@/components/coupons/ModalCreateCoupon.vue';
+import TableCoupons from '@/components/coupons/TableCoupons.vue'
+import ModalCreateCoupon from '@/components/coupons/ModalCreateCoupon.vue'
+import { couponListHook } from '@/hooks/couponHooks'
 
 export default {
   name: 'Coupon',
 
   components: {
+    TableCoupons,
     ModalCreateCoupon,
   },
 
   data() {
     return {
-      data: '',
+      coupons: [],
+      loading: false
     }
   },
 
   methods: {
+    async listCoupons() {
+      this.loading = true
+      const response = await couponListHook()
+
+      if (response.status == 200) {
+        this.coupons = response.data
+        this.loading = false
+      } else {
+        this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
+      }
+    },
+
     openModalCreateCoupon() {
       this.$refs.modalCreateCoupon.openModal()
     }
   },
 
   created() {
+    this.listCoupons()
   }
 }
 </script>

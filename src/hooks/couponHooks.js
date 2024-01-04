@@ -1,8 +1,8 @@
 import api from "@/services/axios"
 
-export async function couponConsultHook(formConsultCoupon) {
+export async function couponListHook() {
   try {
-    return await api.post('/coupons/consult', formConsultCoupon)
+    return await api.get('/coupons')
   } catch (error) {
     return error.response
   }
