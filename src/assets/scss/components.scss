@@ -1,26 +1,27 @@
 /* InputText */
 .p-inputtext {
     height: 45px;
-    border-color: $border-gray;
-
-    &:hover {
-        border-color: $border-gray;
-    }
-
-    &:focus {
-        box-shadow: none;
-        border: 1px solid $green;
-    }
+    font-size: 15px;
+    box-shadow: none;
 }
 
 /* Button */
 .p-button {
     height: 45px;
+    font-size: 15px;
     border-radius: 5px;
+    box-shadow: none;
+}
 
-    &:focus{
-        box-shadow: none;
-    }
+/* Dropdown */
+.p-dropdown {
+    height: 45px;
+    box-shadow: none;
+}
+
+.p-dropdown-items {
+    margin: 0;
+    padding: 0;
 }
 
 /* Datatable */
@@ -34,10 +35,9 @@
     }
 }
 
-.p-datatable-loading-overlay{
+.p-datatable-loading-overlay {
     background: rgba(255, 255, 255, 0.63);
 }
-
 
 /* Define a largura da barra de rolagem */
 ::-webkit-scrollbar {
@@ -49,7 +49,7 @@
     height: 5px;
 }
 
-/* Define a cor da barra de rolagem */  
+/* Define a cor da barra de rolagem */
 ::-webkit-scrollbar-track {
     background-color: gainsboro;
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex justify-content-end align-items-center">
-      <Button @click="openModalCreateStore()" label="Adicionar" rounded />
+      <Button @click="openModalCreateStore()" label="Adicionar" />
     </div>
     <div id="pageContent">
       <TableStores :stores="stores" :loading="loading" />
