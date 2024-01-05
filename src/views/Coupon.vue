@@ -7,7 +7,7 @@
       <TableCoupons :coupons="coupons" :loading="loading" />
     </div>
 
-    <ModalCreateCoupon ref="modalCreateCoupon" />
+    <ModalCreateCoupon :coupons="coupons" ref="modalCreateCoupon" />
   </div>
 </template>
 

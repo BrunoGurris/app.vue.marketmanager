@@ -17,5 +17,13 @@ export function formatDateTimeUtils(date) {
 }
 
 export function formatKeyUtils(key) {
-  return key.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
+  const text = key.slice(-12)
+  return '... ' + text.replace(/(.{4})/g, "$1 ")
+}
+
+export function formatCurrencyUtils(value) {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(value);
 }

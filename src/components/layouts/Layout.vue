@@ -28,12 +28,17 @@ export default {
 }
 
 #layout-content {
-  width: calc(100% - 250px);
+  @media (max-width: 991.98px) {
+    width: 100%;
+    margin-left: 0px;
+  }
 
-  margin-left: 250px;
+  @media (min-width: 992px) {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+  }
+  
   padding: 20px;
-
   overflow: auto;
 }
-
 </style>

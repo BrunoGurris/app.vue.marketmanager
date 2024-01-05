@@ -59,6 +59,10 @@ export default {
 
 <style lang="scss" scoped>
 #sidebar {
+  @media (max-width: 991.98px) {
+    display: none;
+  }
+  
   width: 250px;
   height: 100vh;
   position: fixed;

@@ -31,6 +31,8 @@ import ModalReadQrCode from '@/components/reads/ModalReadQrCode.vue'
 export default {
   name: 'ModalCreateCoupon',
 
+  props: ['coupons'],
+
   components: {
     ModalReadQrCode
   },
@@ -58,9 +60,11 @@ export default {
       const response = await couponCreateHook(this.formCreateCoupon)
 
       if (response.status == 201) {
-        this.closeModal()
+        this.coupons.unshift(response.data)
         this.$toast.add({ severity: 'success', summary: 'Sucesso', detail: 'Cupom cadastrado com sucesso!', life: 3000 })
+        this.closeModal()
       } else {
+        this.clearFields()
         this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
       }
 

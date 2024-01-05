@@ -24,8 +24,12 @@
       </Column>
       <Column field="number" header="Nº do Cupom"></Column>
       <Column field="company" header="Estabelecimento"></Column>
-      <Column field="value" header="Total"></Column>
-      <Column field="created_at" header="Data da Compra">
+      <Column field="value" header="Total">
+        <template #body="{ data }">
+            {{ formatCurrency(data.value) }}
+        </template>
+      </Column>
+      <Column field="date" header="Data da Compra">
         <template #body="{ data }">
             {{ formatDateTime(data.date) }}
         </template>
@@ -51,7 +55,7 @@
 </template>
 
 <script>
-import { formatDateUtils, formatDateTimeUtils, formatKeyUtils} from '../../services/utils'
+import { formatDateUtils, formatDateTimeUtils, formatKeyUtils, formatCurrencyUtils} from '../../services/utils'
 // import ModalEditStore from './ModalEditStore.vue'
 // import ModalDeleteStore from './ModalDeleteStore.vue'
 
@@ -84,6 +88,10 @@ export default {
 
     formatKey(key) {
       return formatKeyUtils(key)
+    },
+
+    formatCurrency(value) {
+      return formatCurrencyUtils(value)
     }
   }
 }
