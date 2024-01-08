@@ -10,6 +10,7 @@
             <InputText v-model="formCreateCoupon.key" type="text"
               placeholder="Digite, scaneie o código de barras ou o QR Code do cupom" maxlength="44" class="w-100" />
             <Button icon="bi bi-qr-code" class="ms-1" @click="openModalReadQrCode()" />
+            <Button icon="bi bi-upc" class="ms-1 fs-3" @click="openModalReadQrCode()" />
           </InputGroup>
         </div>
       </div>

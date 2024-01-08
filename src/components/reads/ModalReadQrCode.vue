@@ -1,21 +1,14 @@
 <template>
-  <div>
-    <Dialog v-model:visible="visible" header="Leitor QR Code" :style="{ width: '50rem' }"
-      :breakpoints="{ '1199px': '75vw', '575px': '90vw' }" :modal="true" position="top" :draggable="false">
-      <div>
-        <div class="center stream">
-          <qrcode-stream @detect="onDecode">
-            <div style="color: red;" class="frame"></div>
-          </qrcode-stream>
-        </div>
-      </div>
-
-      <template #footer>
-        <div class="mt-2">
-          <Button label="Cancelar" severity="secondary" class="me-2" @click="closeModal()" />
-        </div>
-      </template>
-    </Dialog>
+  <div v-if="visible" id="background-qrcode">
+    <div class="d-flex justify-content-between align-items-center" id="header-qrcode">
+      <h4 class="m-0">Leitor de QR Code</h4>
+      <Button label="Fechar" severity="danger" @click="closeModal()" class="ms-auto" />
+    </div>
+    <div class="center stream">
+      <qrcode-stream @detect="onDecode">
+        <div style="color: red;" class="frame"></div>
+      </qrcode-stream>
+    </div>
   </div>
 </template>
   
@@ -89,4 +82,32 @@ export default {
 }
 </script>
   
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#background-qrcode {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.stream {
+  width: 100%;
+  height: 100vh;
+}
+
+#header-qrcode {
+  width: 100%;
+
+  color: white;
+  padding: 10px;
+
+  z-index: 9999;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+}
+</style>
