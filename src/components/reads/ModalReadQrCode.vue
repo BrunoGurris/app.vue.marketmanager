@@ -1,7 +1,7 @@
 <template>
   <div v-if="visible" id="background-qrcode">
     <div class="d-flex justify-content-between align-items-center" id="header-qrcode">
-      <h4 class="m-0">Leitor de QR Code</h4>
+      <h4 class="m-0">Leitor [QR Code]</h4>
       <Button label="Fechar" severity="danger" @click="closeModal()" class="ms-auto" />
     </div>
     <div class="center stream">
@@ -24,15 +24,7 @@ export default {
 
   data() {
     return {
-      visible: false,
-
-      qrcode: '',
-
-      buttonCreateStore: {
-        label: 'Adicionar',
-        disabled: false
-      }
-
+      visible: false
     }
   },
 
@@ -40,6 +32,7 @@ export default {
     onDecode(data) {
       const key = this.formatKey(data[0].rawValue)
       this.setKey(key)
+      this.$toast.add({ severity: 'info', summary: 'Info', detail: 'Leitura efetuada com uscesso!', life: 3000 })
       this.closeModal()
     },
 
@@ -55,10 +48,6 @@ export default {
       this.visible = false
     },
 
-    clearFields() {
-      this.qrcode = ''
-    },
-
     formatKey(text) {
       const result = text.match(/^(.*?)\|/);
 
@@ -69,14 +58,6 @@ export default {
 
       this.$toast.add({ severity: 'error', summary: 'Erro', detail: 'Não foi possivel ler o QR Code. Faça a leitura de cupons SAT', life: 5000 })
       return ''
-    }
-  },
-
-  watch: {
-    visible() {
-      if (!this.visible) {
-        this.clearFields()
-      }
     }
   }
 }

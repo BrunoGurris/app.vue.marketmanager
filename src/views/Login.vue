@@ -64,7 +64,7 @@ export default {
       if (response.status == 200) {
         localStorage.setItem('_token', response.data.token)
         this.$toast.add({ severity: 'success', summary: 'Sucesso', detail: 'Acesso realizado com sucesso!', life: 3000 })
-        this.$router.push('/')
+        window.location.href = '/'
       } else {
         this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
       }

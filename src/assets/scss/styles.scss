@@ -1,6 +1,16 @@
 @import './components.scss';
 @import './variables.scss';
 
+
+.button-icon-view {
+    font-size: 20px;
+    color: $dark-gray;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .button-icon-edit {
     font-size: 20px;
     color: $blue;
@@ -20,5 +30,5 @@
 }
 
 .input-readonly {
-    background: #e2e2e2;
+    background: #e2e2e2 !important;
 }
