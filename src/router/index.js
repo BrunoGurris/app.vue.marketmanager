@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '../components/layouts/Layout.vue'
 import Login from '../views/Login.vue'
-import Coupon from '../views/Coupon.vue'
+import Coupons from '../views/Coupons.vue'
 import Stores from '../views/Stores.vue'
 
 const router = createRouter({
@@ -14,8 +14,8 @@ const router = createRouter({
       children: [
         {
           path: '/cupons',
-          name: 'Coupon',
-          component: Coupon
+          name: 'Coupons',
+          component: Coupons
         },
         {
           path: '/lojas',

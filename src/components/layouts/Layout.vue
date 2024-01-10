@@ -3,19 +3,16 @@
     <Sidebar />
 
     <div id="layout-content">
-      <Header />
       <RouterView />
     </div>
   </div>
 </template>
 
 <script>
-import Header from './Header.vue'
 import Sidebar from './Sidebar.vue'
 
 export default {
   components: {
-    Header,
     Sidebar
   }
 }

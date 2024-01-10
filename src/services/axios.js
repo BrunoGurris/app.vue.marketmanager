@@ -6,7 +6,7 @@ const apiUrl = import.meta.env.VITE_API_URL
 const api = axios.create({
     baseURL: apiUrl,
     headers: { 'Authorization': 'Bearer ' + token },
-    timeout: 10000
+    timeout: 60000
 });
 
 export default api

@@ -1,6 +1,5 @@
-@import './components.scss';
-@import './variables.scss';
-
+@import "./components.scss";
+@import "./variables.scss";
 
 .button-icon-view {
     font-size: 20px;
@@ -31,4 +30,9 @@
 
 .input-readonly {
     background: #e2e2e2 !important;
+}
+
+.page-title {
+    font-weight: bold;
+    margin: 0;
 }

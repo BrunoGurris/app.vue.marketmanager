@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="d-flex justify-content-end align-items-center">
+    <div class="d-flex justify-content-between align-items-center">
+      <h4 class="page-title">Cupons</h4>
       <Button @click="openModalCreateCoupon()" label="Adicionar" />
     </div>
     <div id="pageContent">
@@ -17,7 +18,7 @@ import ModalCreateCoupon from '@/components/coupons/ModalCreateCoupon.vue'
 import { couponListHook } from '@/hooks/couponHooks'
 
 export default {
-  name: 'Coupon',
+  name: 'Coupons',
 
   components: {
     TableCoupons,

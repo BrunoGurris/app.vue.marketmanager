@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="d-flex justify-content-end align-items-center">
+    <div class="d-flex justify-content-between align-items-center">
+      <h4 class="page-title">Lojas</h4>
       <Button @click="openModalCreateStore()" label="Adicionar" />
     </div>
     <div id="pageContent">

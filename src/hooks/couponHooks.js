@@ -16,6 +16,14 @@ export async function couponCreateHook(formCreateCoupon) {
   }
 }
 
+export async function couponDeleteHook(id) {
+  try {
+    return await api.delete(`/coupons/${id}`)
+  } catch (error) {
+    return error.response
+  }
+}
+
 export async function couponItemsHook(id) {
   try {
     return await api.get(`/coupons/${id}/items`)

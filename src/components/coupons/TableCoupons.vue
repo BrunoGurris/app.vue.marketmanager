@@ -38,15 +38,15 @@
           <div class="d-flex">
             <i @click="openModalViewCoupon(data)" class="bi bi-eye-fill mx-1 button-icon-view"></i>
             <i @click="openModalEditStore(data)" class="bi bi-pencil-square mx-1 button-icon-edit"></i>
-            <i @click="openModalDeleteStore(data)" class="bi bi-trash3-fill mx-1 button-icon-delete"></i>
+            <i @click="openModalDeleteCoupon(data)" class="bi bi-trash3-fill mx-1 button-icon-delete"></i>
           </div>
         </template>
       </Column>
     </DataTable>
 
     <ModalViewCoupon ref="modalViewCoupon" />
-    <!-- <ModalEditStore :stores="stores" ref="modalEditStore" />
-    <ModalDeleteStore :stores="stores" ref="modalDeleteStore" /> -->
+    <!-- <ModalEditStore :stores="stores" ref="modalEditStore" /> -->
+    <ModalDeleteCoupon :coupons="coupons" ref="modalDeleteCoupon" /> 
   </div>
 </template>
 
@@ -54,7 +54,7 @@
 import { formatDateUtils, formatDateTimeUtils, formatKeyUtils, formatCurrencyUtils } from '../../services/utils'
 import ModalViewCoupon from './ModalViewCoupon.vue'
 // import ModalEditStore from './ModalEditStore.vue'
-// import ModalDeleteStore from './ModalDeleteStore.vue'
+import ModalDeleteCoupon from './ModalDeleteCoupon.vue'
 
 export default {
   name: 'TableCoupons',
@@ -62,9 +62,9 @@ export default {
   props: ['coupons', 'loading'],
 
   components: {
-    ModalViewCoupon
+    ModalViewCoupon,
     // ModalEditStore,
-    // ModalDeleteStore
+    ModalDeleteCoupon
   },
 
   methods: {
@@ -76,9 +76,9 @@ export default {
     //   this.$refs.modalEditStore.openModal(store)
     // },
 
-    // openModalDeleteStore(store) {
-    //   this.$refs.modalDeleteStore.openModal(store)
-    // },
+    openModalDeleteCoupon(coupon) {
+      this.$refs.modalDeleteCoupon.openModal(coupon)
+    },
 
     formatDate(date) {
       return formatDateUtils(date)
