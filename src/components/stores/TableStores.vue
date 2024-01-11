@@ -26,13 +26,15 @@
       <Column header="Ações">
         <template #body="{ data }">
             <div class="d-flex">
-              <i @click="openModalEditStore(data)" class="bi bi-pencil-square mx-1 button-icon-edit"></i>
-              <i  @click="openModalDeleteStore(data)" class="bi bi-trash3-fill mx-1 button-icon-delete"></i>
+              <i @click="openModalStockStore(data)" v-tooltip.top="{ value: 'Estoque', showDelay: 300, hideDelay: 1 }" class="bi bi-box-fill mx-2 button-icon-aux"></i>
+              <i @click="openModalEditStore(data)" v-tooltip.top="{ value: 'Editar', showDelay: 300, hideDelay: 1 }" class="bi bi-pencil-square mx-2 button-icon-edit"></i>
+              <i @click="openModalDeleteStore(data)"  v-tooltip.top="{ value: 'Excluir', showDelay: 300, hideDelay: 1 }" class="bi bi-trash3-fill mx-2 button-icon-delete"></i>
             </div>
         </template>
       </Column>
     </DataTable>
 
+    <ModalStockStore ref="modalStockStore" />
     <ModalEditStore :stores="stores" ref="modalEditStore" />
     <ModalDeleteStore :stores="stores" ref="modalDeleteStore" />
   </div>
@@ -40,6 +42,7 @@
 
 <script>
 import { formatDateUtils } from '../../services/utils'
+import ModalStockStore from './ModalStockStore.vue'
 import ModalEditStore from './ModalEditStore.vue'
 import ModalDeleteStore from './ModalDeleteStore.vue'
 
@@ -49,11 +52,16 @@ export default {
   props: ['stores', 'loading'],
 
   components: {
+    ModalStockStore,
     ModalEditStore,
     ModalDeleteStore
   },
 
   methods: {
+    openModalStockStore(store) {
+      this.$refs.modalStockStore.openModal(store)
+    },
+
     openModalEditStore(store) {
       this.$refs.modalEditStore.openModal(store)
     },

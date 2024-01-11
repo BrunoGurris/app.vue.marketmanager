@@ -5,6 +5,10 @@
     box-shadow: none;
 }
 
+/* */
+
+
+
 /* Button */
 .p-button {
     height: 45px;
@@ -12,6 +16,10 @@
     border-radius: 5px;
     box-shadow: none;
 }
+
+/* */
+
+
 
 /* Dropdown */
 .p-dropdown {
@@ -23,6 +31,10 @@
     margin: 0;
     padding: 0;
 }
+
+/* */
+
+
 
 /* Datatable */
 .p-datatable {
@@ -38,6 +50,46 @@
 .p-datatable-loading-overlay {
     background: rgba(255, 255, 255, 0.63);
 }
+
+/* */
+
+
+
+/* Tooltip */
+.p-tooltip {
+    font-size: 14px;
+}
+
+/* */
+
+
+
+/* Modal */
+.p-dialog-header {
+    border-bottom: 1px solid $border-gray;
+}
+
+.p-dialog-content {
+    padding: 20px;
+}
+
+/* */
+
+
+/* Uplaod */
+.p-fileupload-choose {
+    background: $blue;
+    border-color: $blue;
+
+    &:hover {
+        background: $dark-blue;
+        border-color: $dark-blue;
+    }
+}
+
+/* */
+
+
 
 /* Define a largura da barra de rolagem */
 ::-webkit-scrollbar {
