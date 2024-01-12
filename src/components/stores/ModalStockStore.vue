@@ -3,23 +3,30 @@
     <Dialog v-model:visible="visible" :header="'Estoque [' + store.name + ']'" :style="{ width: '50rem' }"
       :breakpoints="{ '1199px': '75vw', '575px': '90vw' }" :modal="true" position="top" :draggable="false">
 
-      <FileUpload @upload="onAdvancedUpload($event)" chooseLabel="Escolher" :showUploadButton="false" :showCancelButton="false"
-        :multiple="false" :fileLimit="1" cancelLabel="Cancelar" accept=".csv,.xlsx" :maxFileSize="1000000">
-        <template #empty>
-          <p class="text-center">Faça o upload do .xlsx ou .csv (Excel)</p>
-        </template>
-      </FileUpload>
+      <div v-if="step == true">
+        <FileUpload chooseLabel="Selecionar" uploadLabel="Enviar" :showUploadButton="true" :showCancelButton="false"
+          :multiple="false" :fileLimit="1" cancelLabel="Cancelar" :previewWidth="150" accept=".csv,.xlsx"
+          :maxFileSize="1000000" :customUpload="true" @uploader="onAdvancedUpload">
+          <template #empty>
+            <p class="text-center">Faça o upload do .xlsx ou .csv (Excel)</p>
+          </template>
+        </FileUpload>
+      </div>
+      <div v-else>
+        asdasdas
+      </div>
 
       <template #footer>
-        <Button label="Fechar" severity="secondary" @click="closeModal()" />
+        <div class="d-flex justify-content-between">
+          <Button :label="step ? 'Voltar para listagem' : 'Atualizar estoque'" severity="info" @click="step = !step" />
+          <Button label="Fechar" severity="secondary" @click="closeModal()" />
+        </div>
       </template>
     </Dialog>
   </div>
 </template>
 
 <script>
-// import { storeDeleteHook } from '@/hooks/storeHooks'
-
 export default {
   name: 'ModalStockStore',
 
@@ -29,6 +36,7 @@ export default {
     return {
       store: {},
       visible: false,
+      step: false,
 
       buttonDeleteStore: {
         label: 'Excluir',
@@ -38,25 +46,9 @@ export default {
   },
 
   methods: {
-    // async deleteStore(id) {
-    //   this.buttonDeleteStore.label = 'Excluindo...'
-    //   this.buttonDeleteStore.disabled = true
-
-    //   const response = await storeDeleteHook(id)
-
-    //   if (response.status == 200) {
-    //     const index = this.stores.findIndex(obj => obj.id === response.data.id)
-    //     this.stores.splice(index, 1)
-
-    //     this.$toast.add({ severity: 'success', summary: 'Sucesso', detail: 'Loja excluída com sucesso!', life: 3000 })
-    //     this.closeModal()
-    //   } else {
-    //     this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
-    //   }
-
-    //   this.buttonDeleteStore.label = 'Excluir'
-    //   this.buttonDeleteStore.disabled = false
-    // },
+    onAdvancedUpload(event) {
+      console.log(event.files[0])
+    },
 
     openModal(store) {
       this.store = store
@@ -65,63 +57,10 @@ export default {
 
     closeModal() {
       this.visible = false
-    }
-  }
-}
-</script>
-
-<!-- <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue';
-import { storeCreateHook } from '@/hooks/StoreHooks';
-import { type StoreCreateInterface } from '@/interfaces/StoreInterfaces';
-import type { AxiosResponse } from 'axios';
-
-export default defineComponent({
-  data() {
-    return {
-      visible: ref(false),
-
-      storeCreate: reactive<StoreCreateInterface>({
-        name: ''
-      }),
-
-      buttons: {
-        buttonCreateStore: {
-          label: 'Adicionar',
-          disabled: false
-        }
-      }
-    }
-  },
-
-  methods: {
-    async handleStoreCreate() {
-      this.buttons.buttonCreateStore.label = 'Adicionando...'
-      this.buttons.buttonCreateStore.disabled = true
-
-      const response = await storeCreateHook(this.storeCreate) as AxiosResponse
-
-      if (response.status == 201) {
-        this.$toast.add({ severity: 'success', summary: 'Sucesso', detail: 'Loja adicionada com sucesso!', life: 3000 })
-        this.closeModal()
-      } else {
-        this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
-      }
-
-      this.buttons.buttonCreateStore.label = 'Adicionar'
-      this.buttons.buttonCreateStore.disabled = false
-    },
-
-    openModal() {
-      this.visible = true
-    },
-
-    closeModal() {
-      this.visible = false
     },
 
     clearFields() {
-      this.storeCreate.name = ''
+      this.step = false
     }
   },
 
@@ -132,7 +71,8 @@ export default defineComponent({
       }
     }
   }
-})
-</script> -->
+
+}
+</script>
 
 <style lang="scss" scoped></style>

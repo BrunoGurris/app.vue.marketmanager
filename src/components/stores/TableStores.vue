@@ -18,6 +18,7 @@
 
       <Column field="id" header="ID"></Column>
       <Column field="name" header="Loja"></Column>
+      <Column field="stock" header="Último Estoque"></Column>
       <Column field="created_at" header="Data de Criação">
         <template #body="{ data }">
             {{ formatDate(data.created_at) }}
