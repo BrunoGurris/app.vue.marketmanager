@@ -4,7 +4,7 @@
       <h4 class="page-title">Cupons</h4>
       <Button @click="openModalCreateCoupon()" label="Adicionar" />
     </div>
-    <div id="pageContent">
+    <div class="page-content-layout">
       <TableCoupons :coupons="coupons" :loading="loading" />
     </div>
 
@@ -57,13 +57,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#pageContent {
-  width: 100%;
-
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
-
-  background: $white;
-}
 </style>

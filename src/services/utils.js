@@ -17,8 +17,8 @@ export function formatDateTimeUtils(date) {
 }
 
 export function formatKeyUtils(key) {
-  const text = key.slice(-12)
-  return '... ' + text.replace(/(.{4})/g, "$1 ")
+  return '..' +key.slice(-8)
+  // return '...' + text.replace(/(.{4})/g, "$1")
 }
 
 export function formatCurrencyUtils(value) {

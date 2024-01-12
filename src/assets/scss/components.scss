@@ -5,6 +5,10 @@
     box-shadow: none;
 }
 
+.p-button-icon {
+    font-size: 25px;
+}
+
 /* */
 
 
@@ -87,6 +91,17 @@
     }
 }
 
+/* */
+
+/* Sidebar */
+.p-sidebar {
+    color: $white;
+    background: $green;
+}
+
+.p-sidebar-content {
+    padding: 0px;
+}
 /* */
 
 

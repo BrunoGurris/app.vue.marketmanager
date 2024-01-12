@@ -26,6 +26,7 @@ import InputNumber from 'primevue/inputnumber'
 import InputText from 'primevue/inputtext'
 import Listbox from 'primevue/listbox'
 import Row from 'primevue/row'
+import Sidebar from 'primevue/sidebar'
 import Toast from 'primevue/toast'
 
 const app = createApp(App)
@@ -52,6 +53,7 @@ app.component('InputNumber', InputNumber)
 app.component('InputText', InputText)
 app.component('Listbox', Listbox)
 app.component('Row', Row)
+app.component('Sidebar', Sidebar)
 app.component('Toast', Toast)
 
 app.mount('#app')
