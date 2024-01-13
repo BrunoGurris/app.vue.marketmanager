@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="d-flex justify-content-between align-items-center">
-      <h4 class="page-title">Cupons</h4>
+      <div>
+        <h4 class="page-title">Cupons</h4>
+        <span class="page-subtitle">Gerencie todos os seus cupons</span>
+      </div>
       <Button @click="openModalCreateCoupon()" label="Adicionar" />
     </div>
     <div class="page-content-layout">

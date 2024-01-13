@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="d-flex justify-content-between align-items-center">
-      <h4 class="page-title">Lojas</h4>
+      <div>
+        <h4 class="page-title">Lojas</h4>
+        <span class="page-subtitle">Gerencie todas as duas lojas</span>
+      </div>
       <Button @click="openModalCreateStore()" label="Adicionar" />
     </div>
     <div class="page-content-layout">

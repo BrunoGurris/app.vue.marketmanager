@@ -37,14 +37,14 @@ export default {
         {
           title: 'Funções',
           items: [{
-            page: 'Consultar preço',
+            page: 'Consultar',
             icon: 'bi bi-search',
-            route: '/consulta-preco'
+            route: '/consultar'
           },
           {
-            page: 'Comparação',
+            page: 'Comparar',
             icon: 'bi bi-shuffle',
-            route: '/comparacao'
+            route: '/comparar'
           }]
         }
       ]
@@ -63,7 +63,7 @@ export default {
 <style lang="scss" scoped>
 .sidebar-menu {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 15px;
 
   .sidebar-menu-title {
     height: 60px;
@@ -100,6 +100,8 @@ export default {
     .sidebar-menu-item-icon {
       width: 20px;
       height: 20px;
+
+      margin-right: 5px;
     }
   }
 }
