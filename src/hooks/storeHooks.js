@@ -39,3 +39,11 @@ export async function storeItemsListHook(id) {
     return error.response
   }
 }
+
+export async function storeItemsCreateHook(id, form) {
+  try {
+    return await api.post(`/stores/${id}/items`, form)
+  } catch (error) {
+    return error.response
+  }
+}

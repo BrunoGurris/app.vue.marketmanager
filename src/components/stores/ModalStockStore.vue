@@ -4,9 +4,9 @@
       :breakpoints="{ '1199px': '75vw', '575px': '90vw' }" :modal="true" position="top" :draggable="false">
 
       <div v-if="step == true">
-        <FileUpload chooseLabel="Selecionar" uploadLabel="Enviar" :showUploadButton="true" :showCancelButton="false"
-          :multiple="false" :fileLimit="1" cancelLabel="Cancelar" :previewWidth="150" accept=".csv,.xlsx"
-          :maxFileSize="50000" :customUpload="true" @uploader="onUpload">
+        <FileUpload chooseLabel="Selecionar" :uploadLabel="buttonUploadStoreItem.label" :showUploadButton="true"
+          :showCancelButton="false" :multiple="false" :fileLimit="1" cancelLabel="Cancelar" :previewWidth="150"
+          accept=".csv,.xlsx" :maxFileSize="150000" :customUpload="true" @uploader="onUpload">
           <template #empty>
             <p class="text-center">Faça o upload do .xlsx ou .csv (Excel)</p>
           </template>
@@ -28,7 +28,7 @@
 
 <script>
 import TableItemsStore from './TableItemsStore.vue'
-import { storeItemsListHook } from '@/hooks/storeHooks'
+import { storeItemsListHook, storeItemsCreateHook } from '@/hooks/storeHooks'
 
 export default {
   name: 'ModalStockStore',
@@ -46,12 +46,12 @@ export default {
 
       visible: false,
       step: false,
-      loading: false
+      loading: false,
 
-      // buttonDeleteStore: {
-      //   label: 'Excluir',
-      //   disabled: false
-      // }
+      buttonUploadStoreItem: {
+        label: 'Enviar',
+        disabled: false
+      }
     }
   },
 
@@ -59,7 +59,7 @@ export default {
     async listItems(id) {
       this.items = []
       this.loading = true
-      
+
       const response = await storeItemsListHook(id)
 
       if (response.status == 200) {
@@ -70,8 +70,26 @@ export default {
       }
     },
 
-    onUpload(event) {
-      console.log(event.files[0])
+    async onUpload(event) {
+      this.buttonUploadStoreItem.label = 'Enviando...'
+      this.buttonUploadStoreItem.disabled = true
+
+      const formData = new FormData()
+      formData.append('file', event.files[0])
+
+      const response = await storeItemsCreateHook(this.store.id, formData)
+
+      if (response.status == 201) {
+        this.items = response.data
+        this.step = false
+        this.$toast.add({ severity: 'success', summary: 'Sucesso', detail: 'Estoque atualizado com sucesso!', life: 3000 })
+
+      } else {
+        this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
+      }
+
+      this.buttonUploadStoreItem.label = 'Enviar'
+      this.buttonUploadStoreItem.disabled = false
     },
 
     openModal(store) {
