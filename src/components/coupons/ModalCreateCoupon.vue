@@ -7,7 +7,7 @@
         <div class="col-12 mb-3">
           <label class="form-label m-0 w-100">Chave de acesso (Cupom SAT)</label>
           <InputGroup>
-            <InputText v-model="formCreateCoupon.key" type="text"
+            <InputText v-model="formCreateCoupon.key" type="text" inputmode="numeric"
               placeholder="Digite, scaneie o código de barras ou o QR Code do cupom" maxlength="44" class="w-100" />
             <Button icon="bi bi-qr-code" class="ms-1" @click="openModalReadQrCode()" />
           </InputGroup>

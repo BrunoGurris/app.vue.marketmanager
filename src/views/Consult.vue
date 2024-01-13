@@ -10,17 +10,21 @@
     <div class="page-content-layout px-4">
       <div class="row">
         <div class="col-12 mb-3">
-          <label class="form-label m-0 w-100">Código</label>
+          <label class="form-label m-0 w-100">Código do produto</label>
           <InputGroup>
-            <InputText v-model="formConsult.cod" type="text"
+            <InputText v-show="!step" v-model="formConsult.cod" type="text" inputmode="numeric"
               placeholder="Digite o código do produto que deseja consultar" />
-            <Button :label="buttonConsult.label" :disabled="buttonConsult.disabled" class="ms-1" @click="consult()" />
+            <Button v-show="!step" :label="buttonConsult.label" :disabled="buttonConsult.disabled" class="ms-1"
+              @click="consult()" />
+
+            <InputText v-show="step" type="text" class="input-readonly" :value="'Buscando por: ' + formConsult.cod" readonly />
+            <Button v-show="step" label="Nova consulta" severity="info" class="ms-1" @click="clearConsult()" />
           </InputGroup>
         </div>
       </div>
     </div>
 
-    <div class="row">
+    <div v-if="step" class="row">
       <div class="col-12 col-lg-6">
         <div class="page-content-layout">
           <TableStoresConsult :stores="stores" />
@@ -53,6 +57,7 @@ export default {
     return {
       stores: [],
       coupons: [],
+      step: false,
 
       formConsult: {
         cod: ''
@@ -78,6 +83,7 @@ export default {
       if (response.status == 200) {
         this.stores = response.data.stores
         this.coupons = response.data.coupons
+        this.step = true
         this.$toast.add({ severity: 'success', summary: 'Sucesso', detail: 'Consulta realizada com sucesso!', life: 3000 })
       } else {
         this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
@@ -85,6 +91,11 @@ export default {
 
       this.buttonConsult.label = 'Consultar'
       this.buttonConsult.disabled = false
+    },
+
+    clearConsult() {
+      this.formConsult.cod = ''
+      this.step = false
     }
   },
 
