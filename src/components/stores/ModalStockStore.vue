@@ -6,14 +6,14 @@
       <div v-if="step == true">
         <FileUpload chooseLabel="Selecionar" uploadLabel="Enviar" :showUploadButton="true" :showCancelButton="false"
           :multiple="false" :fileLimit="1" cancelLabel="Cancelar" :previewWidth="150" accept=".csv,.xlsx"
-          :maxFileSize="1000000" :customUpload="true" @uploader="onAdvancedUpload">
+          :maxFileSize="50000" :customUpload="true" @uploader="onUpload">
           <template #empty>
             <p class="text-center">Faça o upload do .xlsx ou .csv (Excel)</p>
           </template>
         </FileUpload>
       </div>
       <div v-else>
-        asdasdas
+        <TableItemsStore :items="items" :loading="loading" />
       </div>
 
       <template #footer>
@@ -27,31 +27,56 @@
 </template>
 
 <script>
+import TableItemsStore from './TableItemsStore.vue'
+import { storeItemsListHook } from '@/hooks/storeHooks'
+
 export default {
   name: 'ModalStockStore',
 
   props: ['stores'],
 
+  components: {
+    TableItemsStore,
+  },
+
   data() {
     return {
       store: {},
+      items: [],
+
       visible: false,
       step: false,
+      loading: false
 
-      buttonDeleteStore: {
-        label: 'Excluir',
-        disabled: false
-      }
+      // buttonDeleteStore: {
+      //   label: 'Excluir',
+      //   disabled: false
+      // }
     }
   },
 
   methods: {
-    onAdvancedUpload(event) {
+    async listItems(id) {
+      this.items = []
+      this.loading = true
+      
+      const response = await storeItemsListHook(id)
+
+      if (response.status == 200) {
+        this.items = response.data
+        this.loading = false
+      } else {
+        this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
+      }
+    },
+
+    onUpload(event) {
       console.log(event.files[0])
     },
 
     openModal(store) {
       this.store = store
+      this.listItems(store.id)
       this.visible = true
     },
 

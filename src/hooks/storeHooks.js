@@ -31,3 +31,11 @@ export async function storeDeleteHook(id) {
     return error.response
   }
 }
+
+export async function storeItemsListHook(id) {
+  try {
+    return await api.get(`/stores/${id}/items`)
+  } catch (error) {
+    return error.response
+  }
+}
