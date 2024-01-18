@@ -1,8 +1,9 @@
 <template>
   <div>
-    <DataTable ref="dt" :value="coupons" :paginator="true" :rows="100" :loading="loading"
+    <DataTable ref="dt" :value="coupons" :paginator="true" :rows="100" :loading="loading" :filters="filters"
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport"
-      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cupons">
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cupons"
+      :globalFilterFields="['key', 'number', 'company', 'value', 'date', 'created_at']">
       <template #loading>
         <div class="text-center">Carregando os cupons...</div>
       </template>
@@ -46,7 +47,7 @@
 
     <ModalViewCoupon ref="modalViewCoupon" />
     <!-- <ModalEditStore :stores="stores" ref="modalEditStore" /> -->
-    <ModalDeleteCoupon :coupons="coupons" ref="modalDeleteCoupon" /> 
+    <ModalDeleteCoupon :coupons="coupons" ref="modalDeleteCoupon" />
   </div>
 </template>
 
@@ -59,7 +60,7 @@ import ModalDeleteCoupon from './ModalDeleteCoupon.vue'
 export default {
   name: 'TableCoupons',
 
-  props: ['coupons', 'loading'],
+  props: ['coupons', 'loading', 'filters'],
 
   components: {
     ModalViewCoupon,

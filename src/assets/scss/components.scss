@@ -107,6 +107,7 @@
 /* Define a largura da barra de rolagem */
 ::-webkit-scrollbar {
     width: 5px;
+    height: 8px;
 }
 
 /* Define a altura da alça da barra de rolagem */
@@ -121,5 +122,5 @@
 
 /* Define a cor da alça da barra de rolagem */
 ::-webkit-scrollbar-thumb {
-    background-color: gray;
+    background-color: rgb(169, 169, 169);
 }

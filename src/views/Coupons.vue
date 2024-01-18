@@ -1,14 +1,21 @@
 <template>
   <div>
-    <div class="d-flex justify-content-between align-items-center">
-      <div>
+    <div class="row">
+      <div class="col-12 col-lg-6 text-center text-lg-start mb-2 mb-lg-0">
         <h4 class="page-title">Cupons</h4>
         <span class="page-subtitle">Gerencie todos os seus cupons</span>
       </div>
-      <Button @click="openModalCreateCoupon()" label="Adicionar" />
+      <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-end">
+        <span class="p-input-icon-left me-2">
+          <i class="bi bi-search d-flex align-items-center" />
+          <InputText v-model="filters['global'].value" placeholder="Buscar" />
+        </span>
+        <Button @click="openModalCreateCoupon()" label="Adicionar" />
+      </div>
     </div>
+
     <div class="page-content-layout">
-      <TableCoupons :coupons="coupons" :loading="loading" />
+      <TableCoupons :coupons="coupons" :loading="loading" :filters="filters" />
     </div>
 
     <ModalCreateCoupon :coupons="coupons" ref="modalCreateCoupon" />
@@ -16,6 +23,7 @@
 </template>
 
 <script>
+import { FilterMatchMode } from 'primevue/api'
 import TableCoupons from '@/components/coupons/TableCoupons.vue'
 import ModalCreateCoupon from '@/components/coupons/ModalCreateCoupon.vue'
 import { couponListHook } from '@/hooks/couponHooks'
@@ -31,7 +39,8 @@ export default {
   data() {
     return {
       coupons: [],
-      loading: false
+      loading: false,
+      filters: {}
     }
   },
 
@@ -50,11 +59,18 @@ export default {
 
     openModalCreateCoupon() {
       this.$refs.modalCreateCoupon.openModal()
+    },
+
+    initFilters() {
+      this.filters = {
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS }
+      }
     }
   },
 
   created() {
     this.listCoupons()
+    this.initFilters()
   }
 }
 </script>
