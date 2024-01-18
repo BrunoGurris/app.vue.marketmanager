@@ -2,7 +2,7 @@
   <div>
     <div id="header" class="d-flex justify-content-between align-items-center">
       <div>
-        -
+        <img id="sidebar-logo" src="@/assets/images/logo2.png" width="170" height="40" class="ms-3">
       </div>
       <div>
         <i id="button-menu-header" @click="visible = true" class="bi bi-justify"></i>
