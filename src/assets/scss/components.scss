@@ -3,10 +3,11 @@
     height: 45px;
     font-size: 15px;
     box-shadow: none;
-}
+    text-transform: uppercase;
 
-.p-button-icon {
-    font-size: 25px;
+    &::placeholder {
+        text-transform: none;
+    }
 }
 
 /* */
@@ -21,6 +22,9 @@
     box-shadow: none;
 }
 
+.p-button-icon {
+    font-size: 25px;
+}
 /* */
 
 

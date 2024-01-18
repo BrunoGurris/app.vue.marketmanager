@@ -1,14 +1,9 @@
 <template>
   <div>
-    <DataTable
-      ref="dt"
-      :value="stores"
-      :paginator="true"
-      :rows="100"
-      :loading="loading"
+    <DataTable ref="dt" :value="stores" :paginator="true" :rows="100" :loading="loading" :filters="filters"
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} lojas"
-    >
+      :globalFilterFields="['name', 'last_stock', 'created_at']">
       <template #loading>
         <div class="text-center">Carregando as lojas...</div>
       </template>
@@ -18,19 +13,26 @@
 
       <Column field="id" header="ID"></Column>
       <Column field="name" header="Loja"></Column>
-      <Column field="stock" header="Último Estoque"></Column>
+      <Column field="last_stock" header="Último Estoque">
+        <template #body="{ data }">
+          {{ data.last_stock ? formatDateTime(data.last_stock) : 'Nenhum' }}
+        </template>
+      </Column>
       <Column field="created_at" header="Data de Criação">
         <template #body="{ data }">
-            {{ formatDate(data.created_at) }}
+          {{ formatDate(data.created_at) }}
         </template>
       </Column>
       <Column header="Ações">
         <template #body="{ data }">
-            <div class="d-flex">
-              <i @click="openModalStockStore(data)" v-tooltip.top="{ value: 'Estoque', showDelay: 300, hideDelay: 1 }" class="bi bi-box-fill mx-2 button-icon-aux"></i>
-              <i @click="openModalEditStore(data)" v-tooltip.top="{ value: 'Editar', showDelay: 300, hideDelay: 1 }" class="bi bi-pencil-square mx-2 button-icon-edit"></i>
-              <i @click="openModalDeleteStore(data)"  v-tooltip.top="{ value: 'Excluir', showDelay: 300, hideDelay: 1 }" class="bi bi-trash3-fill mx-2 button-icon-delete"></i>
-            </div>
+          <div class="d-flex">
+            <i @click="openModalStockStore(data)" v-tooltip.top="{ value: 'Estoque', showDelay: 300, hideDelay: 1 }"
+              class="bi bi-box-fill mx-2 button-icon-aux"></i>
+            <i @click="openModalEditStore(data)" v-tooltip.top="{ value: 'Editar', showDelay: 300, hideDelay: 1 }"
+              class="bi bi-pencil-square mx-2 button-icon-edit"></i>
+            <i @click="openModalDeleteStore(data)" v-tooltip.top="{ value: 'Excluir', showDelay: 300, hideDelay: 1 }"
+              class="bi bi-trash3-fill mx-2 button-icon-delete"></i>
+          </div>
         </template>
       </Column>
     </DataTable>
@@ -42,7 +44,7 @@
 </template>
 
 <script>
-import { formatDateUtils } from '../../services/utils'
+import { formatDateUtils, formatDateTimeUtils } from '@/services/utils'
 import ModalStockStore from './ModalStockStore.vue'
 import ModalEditStore from './ModalEditStore.vue'
 import ModalDeleteStore from './ModalDeleteStore.vue'
@@ -50,7 +52,13 @@ import ModalDeleteStore from './ModalDeleteStore.vue'
 export default {
   name: 'TableStores',
 
-  props: ['stores', 'loading'],
+  props: ['stores', 'loading', 'filters'],
+
+  data() {
+    return {
+      
+    }
+  },
 
   components: {
     ModalStockStore,
@@ -73,6 +81,10 @@ export default {
 
     formatDate(date) {
       return formatDateUtils(date)
+    },
+
+    formatDateTime(date) {
+      return formatDateTimeUtils(date)
     }
   }
 }
