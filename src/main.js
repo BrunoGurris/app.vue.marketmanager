@@ -13,6 +13,7 @@ import { useToast } from 'primevue/usetoast'
 import Tooltip from 'primevue/tooltip';
 
 import Button from 'primevue/button'
+import Chart from 'primevue/chart'
 import Column from 'primevue/column'
 import ColumnGroup from 'primevue/columngroup'
 import DataTable from 'primevue/datatable'
@@ -40,6 +41,7 @@ app.use(ToastService)
 app.directive('tooltip', Tooltip);
 
 app.component('Button', Button)
+app.component('Chart', Chart)
 app.component('Column', Column)
 app.component('ColumnGroup', ColumnGroup)
 app.component('DataTable', DataTable)

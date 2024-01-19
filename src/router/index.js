@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '../components/layouts/Layout.vue'
 import Login from '../views/Login.vue'
+import Dashboard from '../views/Dashboard.vue'
 import Coupons from '../views/Coupons.vue'
 import Stores from '../views/Stores.vue'
 import Consult from '../views/Consult.vue'
@@ -13,6 +14,11 @@ const router = createRouter({
       name: 'Home',
       component: Layout,
       children: [
+        {
+          path: '/',
+          name: 'Dashboard',
+          component: Dashboard
+        },
         {
           path: '/cupons',
           name: 'Coupons',
