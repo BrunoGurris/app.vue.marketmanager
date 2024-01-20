@@ -8,6 +8,14 @@ export async function couponListHook() {
   }
 }
 
+export async function couponViewHook(id) {
+  try {
+    return await api.get(`/coupons/${id}`)
+  } catch (error) {
+    return error.response
+  }
+}
+
 export async function couponCreateHook(formCreateCoupon) {
   try {
     return await api.post('/coupons', formCreateCoupon)
