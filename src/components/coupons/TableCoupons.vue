@@ -3,7 +3,8 @@
     <DataTable ref="dt" :value="coupons" :paginator="true" :rows="100" :loading="loading" :filters="filters"
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cupons"
-      :globalFilterFields="['key', 'number', 'company', 'value', 'date', 'created_at']">
+      :globalFilterFields="['key', 'number', 'company', 'value', 'date', 'created_at']"
+      :rowClass="({ stores }) => stores.length == 0 ? 'bg-warning text-dark': null">
       <template #loading>
         <div class="text-center">Carregando os cupons...</div>
       </template>
@@ -100,4 +101,5 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+</style>
