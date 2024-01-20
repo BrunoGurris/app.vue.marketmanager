@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 col-lg-6 text-center text-lg-start mb-2 mb-lg-0">
         <h4 class="page-title">Lojas</h4>
-        <span class="page-subtitle">Gerencie todas as duas lojas</span>
+        <span class="page-subtitle">Gerencie todas as suas lojas</span>
       </div>
       <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-end">
         <span class="p-input-icon-left me-2">

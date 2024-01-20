@@ -3,10 +3,6 @@
     <Dialog v-model:visible="visible" header="Visualizar cupom" :style="{ width: '50rem' }"
       :breakpoints="{ '1199px': '75vw', '575px': '90vw' }" :modal="true" position="top" :draggable="false">
 
-      <Divider align="center">
-        <b>Informações</b>
-      </Divider>
-
       <div class="row mt-2">
         <div class="col-12 mb-3">
           <label class="form-label m-0 w-100 fw-bold">Chave de acesso</label>
@@ -75,8 +71,8 @@
           <div><b>Descricão:</b> {{ item.description }}</div>
           <div><b>Quantidade:</b> {{ item.amount }}</div>
           <div><b>Unidade:</b> {{ item.unit }}</div>
-          <div><b>Valor unitário:</b> {{ item.valueUnit }}</div>
-          <div><b>Valor total:</b> {{ item.value }}</div>
+          <div><b>Valor unitário:</b> {{ formatCurrency(item.value_unit) }}</div>
+          <div><b>Valor total:</b> {{ formatCurrency(item.value) }}</div>
         </div>
       </div>
       

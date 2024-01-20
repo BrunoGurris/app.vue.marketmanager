@@ -25,6 +25,7 @@
 .p-button-icon {
     font-size: 25px;
 }
+
 /* */
 
 
@@ -81,6 +82,15 @@
     padding: 20px;
 }
 
+.p-dialog-header-close {
+    border-radius: 50%;
+
+    &:hover {
+        color: $text-dark;
+        background: $white;
+    }
+}
+
 /* */
 
 
@@ -110,6 +120,7 @@
         background: $white;
     }
 }
+
 /* */
 
 
