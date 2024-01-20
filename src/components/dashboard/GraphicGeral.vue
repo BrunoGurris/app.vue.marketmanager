@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'Graphic1',
+  name: 'GraphicGeral',
 
   data() {
     return {

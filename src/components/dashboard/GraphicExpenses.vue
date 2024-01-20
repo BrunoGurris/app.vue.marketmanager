@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'Graphic3',
+  name: 'GraphicExpenses',
 
   data() {
     return {

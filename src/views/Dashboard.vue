@@ -17,7 +17,7 @@
     <div class="page-content-layout mt-3">
       <div class="row">
         <div class="col-12">
-          <Graphic1 />
+          <GraphicGeral />
         </div>
       </div>
     </div>
@@ -25,12 +25,12 @@
     <div class="row">
       <div class="col-12 col-lg-8">
         <div class="page-content-layout mt-4">
-          <Graphic2 />
+          <GraphicStores />
         </div>
       </div>
       <div class="col-12 col-lg-4">
         <div class="page-content-layout mt-4">
-          <Graphic3 />
+          <GraphicExpenses />
         </div>
       </div>
     </div>
@@ -38,17 +38,17 @@
 </template>
 
 <script>
-import Graphic1 from '@/components/dashboard/Graphic1.vue'
-import Graphic2 from '@/components/dashboard/Graphic2.vue'
-import Graphic3 from '@/components/dashboard/Graphic3.vue'
+import GraphicGeral from '@/components/dashboard/GraphicGeral.vue'
+import GraphicStores from '@/components/dashboard/GraphicStores.vue'
+import GraphicExpenses from '@/components/dashboard/GraphicExpenses.vue'
 
 export default {
   name: 'Dashboard',
 
   components: {
-    Graphic1,
-    Graphic2,
-    Graphic3
+    GraphicGeral,
+    GraphicStores,
+    GraphicExpenses
   },
 
   data() {
