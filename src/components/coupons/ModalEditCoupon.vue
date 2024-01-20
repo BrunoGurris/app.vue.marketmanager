@@ -26,7 +26,7 @@
       </div>
 
       <Divider align="center" type="dotted">
-        <b>Lojas</b>
+        <b>Lojas <span v-if="formEditCoupon.stores.length > 0">({{ formEditCoupon.stores.length }})</span></b>
       </Divider>
 
       <div v-for="(store, n) in formEditCoupon.stores" :key="n" class="row mb-3">
@@ -41,8 +41,16 @@
             class="w-100" placeholder="R$ 0,00" />
         </div>
         <div class="col-2 col-lg-1 mb-1">
-          <Button icon="bi bi-x" severity="danger" v-tooltip.top="{ value: 'Excluir', showDelay: 300, hideDelay: 1 }" @click="removeStore(n)" />
+          <Button icon="bi bi-x" severity="danger" v-tooltip.top="{ value: 'Excluir', showDelay: 300, hideDelay: 1 }"
+            @click="removeStore(n)" />
         </div>
+      </div>
+
+      <div v-if="formEditCoupon.stores.length == 0 && loading == false" class="text-center">
+        Não há valores das lojas
+      </div>
+      <div v-else-if="formEditCoupon.stores.length == 0 && loading == true" class="text-center">
+        Carregando....
       </div>
 
       <template #footer>
@@ -50,7 +58,7 @@
           <Button label="Adicionar loja" severity="info" @click="addStore()" />
           <div>
             <Button label="Fechar" severity="secondary" class="me-2" @click="closeModal()" />
-            <Button :label="buttonEditCoupon.label" :disabled="buttonEditCoupon.disabled" @click="createCoupon()" />
+            <Button :label="buttonEditCoupon.label" :disabled="buttonEditCoupon.disabled" @click="editCoupon(coupon.id)" />
           </div>
         </div>
       </template>
@@ -60,7 +68,7 @@
 
 <script>
 import { formatDateUtils, formatDateTimeUtils, formatCurrencyUtils } from '../../services/utils'
-import { couponViewHook } from '@/hooks/couponHooks'
+import { couponViewHook, couponEditHook } from '@/hooks/couponHooks'
 import { storeListHook } from '@/hooks/storeHooks'
 
 export default {
@@ -76,6 +84,7 @@ export default {
       visible: false,
       coupon: {},
       stores: [],
+      loading: true,
 
       formEditCoupon: {
         stores: []
@@ -89,6 +98,24 @@ export default {
   },
 
   methods: {
+    async editCoupon(id) {
+      this.buttonEditCoupon.label = 'Editando...'
+      this.buttonEditCoupon.disabled = true
+
+      const response = await couponEditHook(this.formEditCoupon, id)
+
+      if (response.status == 200) {
+        const index = this.coupons.findIndex(obj => obj.id === response.data.id)
+        this.coupons[index] = response.data
+
+        this.$toast.add({ severity: 'success', summary: 'Sucesso', detail: 'Cupom editado com sucesso!', life: 3000 })
+        this.closeModal()
+      }
+
+      this.buttonEditCoupon.label = 'Editar'
+      this.buttonEditCoupon.disabled = false
+    },
+
     async viewCoupon(coupon) {
       const response = await couponViewHook(coupon.id)
 
@@ -128,7 +155,9 @@ export default {
           id: store.store_id,
           value: store.value
         })
-      });
+      })
+
+      this.loading = false
     },
 
     openModal(coupon) {
@@ -156,6 +185,7 @@ export default {
     clearFields() {
       this.coupon = {}
       this.formEditCoupon.stores = []
+      this.loading = true
     }
   },
 

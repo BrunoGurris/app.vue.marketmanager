@@ -16,9 +16,17 @@ export async function couponViewHook(id) {
   }
 }
 
-export async function couponCreateHook(formCreateCoupon) {
+export async function couponCreateHook(form) {
   try {
-    return await api.post('/coupons', formCreateCoupon)
+    return await api.post('/coupons', form)
+  } catch (error) {
+    return error.response
+  }
+}
+
+export async function couponEditHook(form, id) {
+  try {
+    return await api.put(`/coupons/${id}`, form)
   } catch (error) {
     return error.response
   }

@@ -37,9 +37,9 @@
       <Column header="Ações">
         <template #body="{ data }">
           <div class="d-flex">
-            <i @click="openModalViewCoupon(data)" class="bi bi-eye-fill mx-1 button-icon-view"></i>
-            <i @click="openModalEditCoupon(data)" class="bi bi-pencil-square mx-1 button-icon-edit"></i>
-            <i @click="openModalDeleteCoupon(data)" class="bi bi-trash3-fill mx-1 button-icon-delete"></i>
+            <i @click="openModalViewCoupon(data)" class="bi bi-eye-fill mx-1 button-icon-view" v-tooltip.top="{ value: 'Detalhes', showDelay: 300, hideDelay: 1 }"></i>
+            <i @click="openModalEditCoupon(data)" class="bi bi-pencil-square mx-1 button-icon-edit" v-tooltip.top="{ value: 'Editar', showDelay: 300, hideDelay: 1 }"></i>
+            <i @click="openModalDeleteCoupon(data)" class="bi bi-trash3-fill mx-1 button-icon-delete" v-tooltip.top="{ value: 'Excluir', showDelay: 300, hideDelay: 1 }"></i>
           </div>
         </template>
       </Column>
