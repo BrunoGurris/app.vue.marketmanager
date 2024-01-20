@@ -110,6 +110,8 @@ export default {
 
         this.$toast.add({ severity: 'success', summary: 'Sucesso', detail: 'Cupom editado com sucesso!', life: 3000 })
         this.closeModal()
+      } else {
+        this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
       }
 
       this.buttonEditCoupon.label = 'Editar'
