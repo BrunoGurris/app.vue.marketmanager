@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Chart type="line" :data="chartData" :options="options" style="width: 100%; height: 400px" />
+    <div class="text-center text-lg-start">
+      <h5 class="fw-bold m-0">Resumo</h5>
+      <div>Gráfico geral de todas as lojas</div>
+    </div>
+    <Chart type="line" :data="chartData" :options="options" style="width: 100%; height: 400px" class="mt-3" />
   </div>
 </template>
 
@@ -14,33 +18,37 @@ export default {
         labels: ['Out/2022', 'Nov/2022', 'Dez/2022', 'Jan/2023', 'Feb/2023'],
         datasets: [
           {
-            label: 'Cupons',
-            data: [65, 59, 80, 101, 56],
+            label: 'Lucro',
+            data: [28, 48, 40, 19, 86],
             fill: false,
-            borderColor: '#7D27BD',
-            tension: 0.4
+            borderDash: [5, 5],
+            borderColor: '#30bb80',
+            tension: 0.4,
+            backgroundColor: '#30bb80'
           },
           {
             label: 'Despesas',
             data: [50, 40, 30, 45, 65],
             fill: false,
-            borderColor: '#BD2727',
-            tension: 0.4
+            borderColor: '#EF4444',
+            tension: 0.4,
+            backgroundColor: '#EF4444'
+          },
+          {
+            label: 'Cupons',
+            data: [65, 59, 80, 101, 56],
+            fill: false,
+            borderColor: '#F59E0B',
+            tension: 0.4,
+            backgroundColor: '#F59E0B'
           },
           {
             label: 'Faturamento',
             data: [55, 10, 70, 120, 45],
             fill: false,
-            borderColor: '#2740BD',
-            tension: 0.4
-          },
-          {
-            label: 'Lucro',
-            data: [28, 48, 40, 19, 86],
-            fill: false,
-            borderColor: '#3EBD27',
+            borderColor: '#117cdf',
             tension: 0.4,
-            backgroundColor: 'rgba(62,189,39,0.2)'
+            backgroundColor: '#117cdf'
           }
         ],
       },
@@ -97,4 +105,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.chart-title {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+</style>

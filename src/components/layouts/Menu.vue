@@ -29,6 +29,16 @@ export default {
             route: '/cupons'
           },
           {
+            page: 'Despesas',
+            icon: 'bi bi-currency-dollar',
+            route: '/despesas'
+          },
+          {
+            page: 'Faturamento',
+            icon: 'bi bi-cash-stack',
+            route: '/faturamento'
+          },
+          {
             page: 'Lojas',
             icon: 'bi bi-shop-window',
             route: '/lojas'

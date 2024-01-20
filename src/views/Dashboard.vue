@@ -14,7 +14,7 @@
       </div> -->
     </div>
 
-    <div class="page-content-layout">
+    <div class="page-content-layout mt-3">
       <div class="row">
         <div class="col-12">
           <Graphic1 />
