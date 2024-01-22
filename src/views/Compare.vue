@@ -120,7 +120,7 @@ export default {
     },
 
     onComplete(e) {
-      this.suggestions = [{ name: 'Nenhum', code: 0 }]
+      this.suggestions = []
 
       this.coupons.forEach(coupon => {
         if (coupon.number.includes(e.query) || coupon.key.includes(e.query) || e.query == '') {
