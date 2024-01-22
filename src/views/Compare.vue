@@ -11,11 +11,11 @@
       <div class="row mb-3 mt-2">
         <div class="d-flex">
           <div class="flex align-items-center me-4">
-            <RadioButton v-model="formCompare.type" inputId="ingredient1" name="type" value="coupon" />
+            <RadioButton v-model="formCompare.type" name="type" value="coupon" />
             <label class="ms-1">Entre cupom e lojas</label>
           </div>
           <div class="flex align-items-center">
-            <RadioButton v-model="formCompare.type" inputId="ingredient2" name="type" value="stores" />
+            <RadioButton v-model="formCompare.type" name="type" value="stores" />
             <label class="ms-1">Apenas entre lojas</label>
           </div>
         </div>
@@ -42,14 +42,14 @@
           <InputNumber v-model="formCompare.percentage_max" suffix="%" :minFractionDigits="2" placeholder="Máximo"
             class="w-100" />
         </div>
-        <div v-if="formCompare.type == 'coupon'" class="col-12 mb-3">
+        <!-- <div v-if="formCompare.type == 'coupon'" class="col-12 mb-3">
           <div class="flex align-items-center">
-            <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" class="me-1" />
+            <Checkbox v-model="formCompare.rounded" :binary="true" class="me-1" />
             <label class="form-label m-0">Arredondar centavos (0,49 ou 0,99)</label>
             <i class="bi bi-question-circle-fill ms-2" v-tooltip.top="{ value: 'Ex: R$5,30 => R$5,49\nEx: R$8,75 => R$8,99', showDelay: 300, hideDelay: 1 }"
              ></i>
           </div>
-        </div>
+        </div> -->
         <div class="col-12 mb-3">
           <Button label="Comparar" class="w-100" />
         </div>
