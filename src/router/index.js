@@ -5,6 +5,7 @@ import Dashboard from '../views/Dashboard.vue'
 import Coupons from '../views/Coupons.vue'
 import Stores from '../views/Stores.vue'
 import Consult from '../views/Consult.vue'
+import Compare from '../views/Compare.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,11 @@ const router = createRouter({
           path: '/consultar',
           name: 'Consult',
           component: Consult
+        },
+        {
+          path: '/comparar',
+          name: 'Compare',
+          component: Compare
         }
       ]
     },

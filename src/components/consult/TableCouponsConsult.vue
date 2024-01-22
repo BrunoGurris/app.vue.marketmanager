@@ -17,6 +17,10 @@
           </tr>
         </tbody>
       </table>
+
+      <div v-if="coupons.length == 0" class="text-center">
+        Não há registros de compras desse código
+      </div>
     </div>
   </div>
 </template>

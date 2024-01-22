@@ -44,6 +44,45 @@
 /* */
 
 
+/* Multi Select */
+.p-multiselect {
+    height: 45px;
+    box-shadow: none;
+}
+
+.p-multiselect-items {
+    margin: 0;
+    padding: 0;
+}
+
+.p-multiselect-token {
+    height: 30px;
+    font-size: 14px;
+    color: white;
+    background: $green;
+}
+
+/* */
+
+
+/* AutoComplete */
+.p-autocomplete {
+    height: 45px;
+    box-shadow: none;
+}
+
+.p-autocomplete-items {
+    margin: 0;
+    padding: 0;
+}
+
+.p-autocomplete-dropdown {
+    margin-left: 5px;
+}
+
+/* */
+
+
 
 /* Datatable */
 .p-datatable {

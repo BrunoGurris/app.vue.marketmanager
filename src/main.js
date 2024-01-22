@@ -12,8 +12,10 @@ import ToastService from 'primevue/toastservice'
 import { useToast } from 'primevue/usetoast'
 import Tooltip from 'primevue/tooltip';
 
+import AutoComplete from 'primevue/autocomplete'
 import Button from 'primevue/button'
 import Chart from 'primevue/chart'
+import Checkbox from 'primevue/checkbox'
 import Column from 'primevue/column'
 import ColumnGroup from 'primevue/columngroup'
 import DataTable from 'primevue/datatable'
@@ -26,6 +28,8 @@ import InputGroupAddon from 'primevue/inputgroupaddon'
 import InputNumber from 'primevue/inputnumber'
 import InputText from 'primevue/inputtext'
 import Listbox from 'primevue/listbox'
+import MultiSelect from 'primevue/multiselect'
+import RadioButton from 'primevue/radiobutton'
 import Row from 'primevue/row'
 import Sidebar from 'primevue/sidebar'
 import Toast from 'primevue/toast'
@@ -40,8 +44,10 @@ app.use(PrimeVue)
 app.use(ToastService)
 app.directive('tooltip', Tooltip);
 
+app.component('AutoComplete', AutoComplete)
 app.component('Button', Button)
 app.component('Chart', Chart)
+app.component('Checkbox', Checkbox)
 app.component('Column', Column)
 app.component('ColumnGroup', ColumnGroup)
 app.component('DataTable', DataTable)
@@ -54,6 +60,8 @@ app.component('InputGroupAddon', InputGroupAddon)
 app.component('InputNumber', InputNumber)
 app.component('InputText', InputText)
 app.component('Listbox', Listbox)
+app.component('MultiSelect', MultiSelect)
+app.component('RadioButton', RadioButton)
 app.component('Row', Row)
 app.component('Sidebar', Sidebar)
 app.component('Toast', Toast)
