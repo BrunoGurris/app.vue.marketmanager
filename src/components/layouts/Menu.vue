@@ -18,44 +18,53 @@ export default {
       menuGroups: [
         {
           title: 'Menu',
-          items: [{
-            page: 'Dashboard',
-            icon: 'bi bi-grid',
-            route: '/'
-          },
-          {
-            page: 'Cupons',
-            icon: 'bi bi-receipt',
-            route: '/cupons'
-          },
-          {
-            page: 'Despesas',
-            icon: 'bi bi-currency-dollar',
-            route: '/despesas'
-          },
-          {
-            page: 'Faturamento',
-            icon: 'bi bi-cash-stack',
-            route: '/faturamento'
-          },
-          {
-            page: 'Lojas',
-            icon: 'bi bi-shop-window',
-            route: '/lojas'
-          }]
+          items: [
+            {
+              page: 'Dashboard',
+              icon: 'bi bi-grid',
+              route: '/'
+            },
+            {
+              page: 'Cupons',
+              icon: 'bi bi-receipt',
+              route: '/cupons'
+            },
+            {
+              page: 'Lojas',
+              icon: 'bi bi-shop-window',
+              route: '/lojas'
+            }
+          ]
         },
         {
           title: 'Funções',
-          items: [{
-            page: 'Consultar',
-            icon: 'bi bi-search',
-            route: '/consultar'
-          },
-          {
-            page: 'Comparar',
-            icon: 'bi bi-shuffle',
-            route: '/comparar'
-          }]
+          items: [
+            {
+              page: 'Consultar',
+              icon: 'bi bi-search',
+              route: '/consultar'
+            },
+            {
+              page: 'Comparar',
+              icon: 'bi bi-shuffle',
+              route: '/comparar'
+            }
+          ]
+        },
+        {
+          title: 'Em Construção',
+          items: [
+            {
+              page: 'Despesas',
+              icon: 'bi bi-currency-dollar',
+              route: '/despesas'
+            },
+            {
+              page: 'Faturamento',
+              icon: 'bi bi-cash-stack',
+              route: '/faturamento'
+            }
+          ]
         }
       ]
     }

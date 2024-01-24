@@ -2,12 +2,12 @@
   <div>
     <div class="d-flex justify-content-start align-items-center">
       <div>
-        <h4 class="page-title" @click="teste()">Comparar</h4>
+        <h4 class="page-title">Comparar</h4>
         <span class="page-subtitle">Compare os cupons com as lojas</span>
       </div>
     </div>
 
-    <div class="page-content-layout px-4">
+    <div class="page-content-layout">
       <div class="row mb-3 mt-2">
         <div class="d-flex">
           <div class="flex align-items-center me-4">
@@ -51,14 +51,20 @@
           </div>
         </div> -->
         <div class="col-12 mb-3">
-          <Button label="Comparar" class="w-100" />
+          <Button label="Comparar" class="w-100" @click="compare()" />
         </div>
       </div>
+    </div>
+
+    <div class="page-content-layout" v-if="tableCompareStores.rows.length > 0">
+      <TableCompareStores :columns="tableCompareStores.columns" :rows="tableCompareStores.rows" />
     </div>
   </div>
 </template>
   
 <script>
+import TableCompareStores from '@/components/compare/TableCompareStores.vue'
+import { compareCompareHook } from '@/hooks/compareHooks'
 import { couponListHook } from '@/hooks/couponHooks'
 import { storeListHook } from '@/hooks/storeHooks'
 import { formatCurrencyUtils, formatDateUtils } from '@/services/utils'
@@ -67,7 +73,7 @@ export default {
   name: 'Compare',
 
   components: {
-
+    TableCompareStores
   },
 
   data() {
@@ -86,11 +92,29 @@ export default {
         percentage_min: 0,
         percentage_max: 0,
         rounded: false
+      },
+
+      tableCompareStores: {
+        type: '',
+        columns: [],
+        rows: [],
       }
     }
   },
 
   methods: {
+    async compare() {
+      const response = await compareCompareHook(this.formCompare)
+
+      if (response.status == 200) {
+        this.tableCompareStores.type = response.data.type
+        this.tableCompareStores.columns = response.data.columns
+        this.tableCompareStores.rows = response.data.rows
+      } else {
+        this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
+      }
+    },
+
     async listCoupons() {
       this.coupons = []
 
@@ -101,10 +125,6 @@ export default {
       } else {
         this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
       }
-    },
-
-    teste() {
-      console.log(this.formCompare)
     },
 
     async listStores() {

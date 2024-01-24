@@ -3,6 +3,8 @@ import Layout from '../components/layouts/Layout.vue'
 import Login from '../views/Login.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Coupons from '../views/Coupons.vue'
+import Expenses from '../views/Expenses.vue'
+import Sales from '../views/Sales.vue'
 import Stores from '../views/Stores.vue'
 import Consult from '../views/Consult.vue'
 import Compare from '../views/Compare.vue'
@@ -24,6 +26,16 @@ const router = createRouter({
           path: '/cupons',
           name: 'Coupons',
           component: Coupons
+        },
+        {
+          path: '/despesas',
+          name: 'Expenses',
+          component: Expenses
+        },
+        {
+          path: '/faturamento',
+          name: 'Sales',
+          component: Sales
         },
         {
           path: '/lojas',
