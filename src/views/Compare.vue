@@ -25,31 +25,36 @@
         <div v-if="formCompare.type == 'coupon'" class="col-12 mb-3">
           <label class="form-label m-0 w-100">Cupom</label>
           <AutoComplete v-model="couponSelected" :suggestions="suggestions" field="name"
-            placeholder="Selecione um cupom (Nº ou Chave)" dropdown @complete="onComplete" class="w-100" :disabled="step" />
+            placeholder="Selecione um cupom (Nº ou Chave)" dropdown @complete="onComplete" class="w-100"
+            :disabled="step" />
         </div>
         <div class="col-12 mb-3">
           <label class="form-label m-0 w-100">Lojas</label>
           <MultiSelect v-model="storesSelected" display="chip" :options="stores" optionLabel="name" optionValue="id"
-            placeholder="Selecione as lojas" class="w-100" :disabled="step" />
+            placeholder="Selecione as lojas" class="w-100" emptyMessage="Nenhum registro de loja" :disabled="step" />
         </div>
         <div v-if="formCompare.type == 'coupon'" class="col-12 col-lg-6 mb-3">
-          <label class="form-label m-0 w-100">Lucro mínimo (%)</label>
-          <InputNumber v-model="formCompare.percentage_min" suffix="%" :minFractionDigits="2" placeholder="Minimo"
+          <label class="form-label m-0 w-100">Lucro (%)</label>
+          <InputNumber v-model="formCompare.percentage" suffix="%" :minFractionDigits="2" placeholder="Minimo"
             class="w-100" :disabled="step" />
         </div>
         <div v-if="formCompare.type == 'coupon'" class="col-12 col-lg-6 mb-3">
-          <label class="form-label m-0 w-100">Lucro máximo (%)</label>
-          <InputNumber v-model="formCompare.percentage_max" suffix="%" :minFractionDigits="2" placeholder="Máximo"
+          <label class="form-label m-0 w-100">Margem do lucro (%)<i class="bi bi-question-circle-fill ms-2"
+              v-tooltip.top="{ value: 'Ex: Se seu lucro é de 60% e sua margem de lucro é de 5%, o sistema irá considerar que os produtos que tem o preço de venda entre 55% e 65% do valor comprado estão no preço correto!', showDelay: 300, hideDelay: 1 }"></i></label>
+          <InputNumber v-model="formCompare.percentage_radius" suffix="%" :minFractionDigits="2" placeholder="Máximo"
             class="w-100" :disabled="step" />
         </div>
         <div class="col-12 mb-3">
-          <Button v-if="!step" :label="buttonCompare.label" :disabled="buttonCompare.disabled" class="w-100" @click="compare()" />
+          <Button v-if="!step && formCompare.type == 'coupon'" :label="buttonCompareCoupons.label"
+            :disabled="buttonCompareCoupons.disabled" class="w-100" @click="compareStores()" />
+          <Button v-else-if="!step && formCompare.type == 'stores'" :label="buttonCompareStores.label"
+            :disabled="buttonCompareStores.disabled" class="w-100" @click="compareStores()" />
           <Button v-else label="Nova comparação" class="w-100" severity="info" @click="clearFields()" />
         </div>
       </div>
     </div>
 
-    <div class="page-content-layout mt-3" v-if="formCompare.type == 'stores' && step == true">
+    <div class="page-content-layout mt-3" v-if="tableCompareStores.type == 'stores' && step == true">
       <TableCompareStores :columns="tableCompareStores.columns" :rows="tableCompareStores.rows" />
     </div>
   </div>
@@ -57,7 +62,7 @@
   
 <script>
 import TableCompareStores from '@/components/compare/TableCompareStores.vue'
-import { compareCompareHook } from '@/hooks/compareHooks'
+import { compareStoresHook } from '@/hooks/compareHooks'
 import { couponListHook } from '@/hooks/couponHooks'
 import { storeListHook } from '@/hooks/storeHooks'
 import { formatCurrencyUtils, formatDateUtils } from '@/services/utils'
@@ -83,8 +88,8 @@ export default {
         type: 'coupon',
         coupon_id: 0,
         stores_id: [],
-        percentage_min: 0,
-        percentage_max: 0,
+        percentage: 0,
+        percentage_radius: 5,
       },
 
       tableCompareStores: {
@@ -93,19 +98,24 @@ export default {
         rows: [],
       },
 
-      buttonCompare: {
-        label: 'Comparar',
+      buttonCompareCoupons: {
+        label: 'Comparar cupom',
+        disabled: false,
+      },
+
+      buttonCompareStores: {
+        label: 'Comparar lojas',
         disabled: false,
       }
     }
   },
 
   methods: {
-    async compare() {
-      this.buttonCompare.label = 'Comparando...'
-      this.buttonCompare.disabled = true
+    async compareStores() {
+      this.buttonCompareStores.label = 'Comparando lojas...'
+      this.buttonCompareStores.disabled = true
 
-      const response = await compareCompareHook(this.formCompare)
+      const response = await compareStoresHook(this.formCompare)
 
       if (response.status == 200) {
         this.step = true
@@ -116,8 +126,8 @@ export default {
         this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
       }
 
-      this.buttonCompare.label = 'Comparar'
-      this.buttonCompare.disabled = false
+      this.buttonCompareStores.label = 'Comparar lojas'
+      this.buttonCompareStores.disabled = false
     },
 
     async listCoupons() {
@@ -195,7 +205,6 @@ export default {
       })
     }
   }
-
 }
 </script>
   
