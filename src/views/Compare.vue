@@ -45,13 +45,17 @@
             class="w-100" :disabled="step" />
         </div>
         <div class="col-12 mb-3">
-          <Button v-if="!step && formCompare.type == 'coupon'" :label="buttonCompareCoupons.label"
-            :disabled="buttonCompareCoupons.disabled" class="w-100" @click="compareStores()" />
+          <Button v-if="!step && formCompare.type == 'coupon'" :label="buttonCompareCoupon.label"
+            :disabled="buttonCompareCoupon.disabled" class="w-100" @click="compareCoupon()" />
           <Button v-else-if="!step && formCompare.type == 'stores'" :label="buttonCompareStores.label"
             :disabled="buttonCompareStores.disabled" class="w-100" @click="compareStores()" />
           <Button v-else label="Nova comparação" class="w-100" severity="info" @click="clearFields()" />
         </div>
       </div>
+    </div>
+
+    <div class="page-content-layout mt-3" v-if="tableCompareCoupon.type == 'coupon' && step == true">
+      <TableCompareCoupon :columns="tableCompareCoupon.columns" :rows="tableCompareCoupon.rows" />
     </div>
 
     <div class="page-content-layout mt-3" v-if="tableCompareStores.type == 'stores' && step == true">
@@ -61,8 +65,9 @@
 </template>
   
 <script>
+import TableCompareCoupon from '@/components/compare/TableCompareCoupon.vue'
 import TableCompareStores from '@/components/compare/TableCompareStores.vue'
-import { compareStoresHook } from '@/hooks/compareHooks'
+import { compareCouponHook, compareStoresHook } from '@/hooks/compareHooks'
 import { couponListHook } from '@/hooks/couponHooks'
 import { storeListHook } from '@/hooks/storeHooks'
 import { formatCurrencyUtils, formatDateUtils } from '@/services/utils'
@@ -71,6 +76,7 @@ export default {
   name: 'Compare',
 
   components: {
+    TableCompareCoupon,
     TableCompareStores
   },
 
@@ -92,13 +98,19 @@ export default {
         percentage_radius: 5,
       },
 
+      tableCompareCoupon: {
+        type: '',
+        columns: [],
+        rows: [],
+      },
+
       tableCompareStores: {
         type: '',
         columns: [],
         rows: [],
       },
 
-      buttonCompareCoupons: {
+      buttonCompareCoupon: {
         label: 'Comparar cupom',
         disabled: false,
       },
@@ -111,6 +123,25 @@ export default {
   },
 
   methods: {
+    async compareCoupon() {
+      this.buttonCompareCoupon.label = 'Comparando cupom...'
+      this.buttonCompareCoupon.disabled = true
+
+      const response = await compareCouponHook(this.formCompare)
+
+      if (response.status == 200) {
+        this.step = true
+        this.tableCompareCoupon.type = response.data.type
+        this.tableCompareCoupon.columns = response.data.columns
+        this.tableCompareCoupon.rows = response.data.rows
+      } else {
+        this.$toast.add({ severity: 'error', summary: 'Erro', detail: response.data.messages[0], life: 3000 })
+      }
+
+      this.buttonCompareCoupon.label = 'Comparar cupom'
+      this.buttonCompareCoupon.disabled = false
+    },
+
     async compareStores() {
       this.buttonCompareStores.label = 'Comparando lojas...'
       this.buttonCompareStores.disabled = true
@@ -180,9 +211,9 @@ export default {
       this.formCompare.type = 'coupon'
       this.formCompare.coupon_id = 0
       this.formCompare.stores_id = []
-      this.formCompare.percentage_min = 0
-      this.formCompare.percentage_max = 0
+      this.formCompare.percentage_radius = 5
 
+      this.couponSelected = null
       this.storesSelected = []
     }
   },
