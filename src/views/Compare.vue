@@ -209,8 +209,7 @@ export default {
     clearFields() {
       this.step = false
       this.formCompare.type = 'coupon'
-      this.formCompare.coupon_id = 0
-      this.formCompare.stores_id = []
+      this.formCompare.percentage = ''
       this.formCompare.percentage_radius = 5
 
       this.couponSelected = null
@@ -225,7 +224,7 @@ export default {
 
   watch: {
     couponSelected(value) {
-      this.formCompare.coupon_id = value.code
+      this.formCompare.coupon_id = value ? value.code : null
     },
 
     storesSelected(value) {

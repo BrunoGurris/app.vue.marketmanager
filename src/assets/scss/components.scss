@@ -199,5 +199,6 @@
 
 /* Define a cor da alça da barra de rolagem */
 ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
     background-color: rgb(169, 169, 169);
 }

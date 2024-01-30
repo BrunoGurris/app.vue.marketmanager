@@ -2,28 +2,40 @@
   <div>
     <div class="d-block d-lg-flex justify-content-center justify-content-lg-end mt-2">
       <div class="d-flex justify-content-center align-items-center">
-        <div class="flex align-items-center me-4">
-          <RadioButton v-model="filters.type" name="filter" value="all" />
-          <label class="ms-1">Todos</label>
-        </div>
-        <div class="flex align-items-center me-4">
-          <RadioButton v-model="filters.type" name="filter" value="below-price" />
-          <label class="ms-1">Abaixo do preço</label>
-        </div>
-        <div class="flex align-items-center me-4">
-          <RadioButton v-model="filters.type" name="filter" value="above-price" />
-          <label class="ms-1">Acima do preço</label>
-        </div>
-        <div class="flex align-items-center me-4">
-          <RadioButton v-model="filters.type" name="filter" value="not-standard" />
-          <label class="ms-1">Não padronizados</label>
+        <div class="row">
+          <div class="col-6 mt-1">
+            <div class="flex align-items-center me-4">
+              <RadioButton v-model="filters.type" name="filter" value="all" />
+              <label class="ms-1">Todos</label>
+            </div>
+          </div>
+          <div class="col-6 mt-1">
+            <div class="flex align-items-center me-4">
+              <RadioButton v-model="filters.type" name="filter" value="below-price" />
+              <label class="ms-1">Abaixo do preço</label>
+            </div>
+          </div>
+          <div class="col-6 mt-1">
+            <div class="flex align-items-center me-4">
+              <RadioButton v-model="filters.type" name="filter" value="above-price" />
+              <label class="ms-1">Acima do preço</label>
+            </div>
+          </div>
+          <div class="col-6 mt-1">
+            <div class="flex align-items-center me-4">
+              <RadioButton v-model="filters.type" name="filter" value="not-standard" />
+              <label class="ms-1">Não padronizados</label>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="d-flex justify-content-center me-4">
-        <span class="p-input-icon-left ms-lg-3 mt-3 mt-lg-0">
-          <i class="bi bi-search d-flex align-items-center" />
-          <InputText v-model="filters.text" placeholder="Buscar" />
-        </span>
+      <div>
+        <div class="d-flex justify-content-center me-4">
+          <span class="p-input-icon-left ms-lg-3 mt-3 mt-lg-0">
+            <i class="bi bi-search d-flex align-items-center" />
+            <InputText v-model="filters.text" placeholder="Buscar" />
+          </span>
+        </div>
       </div>
     </div>
 
