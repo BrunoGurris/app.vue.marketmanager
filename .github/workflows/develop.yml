@@ -29,5 +29,5 @@ jobs:
         ls
         yarn build
         ls
-        cd ..
+        cd ../..
         ls
