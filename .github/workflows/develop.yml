@@ -1,0 +1,25 @@
+name: Deploy Develop
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.DEVELOP_HOST }}
+        username: ${{ secrets.DEVELOP_USER }}
+        password: ${{ secrets.DEVELOP_PASSWORD }}
+        port: ${{ secrets.DEVELOP_PORT }}
+        server-dir: /
+
+    - name: 📂 Install dependencies
+      run: yarn
