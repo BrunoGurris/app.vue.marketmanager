@@ -26,4 +26,3 @@ jobs:
         rm package-lock.json
         yarn install
         rm -rf dist
-        yarn build
