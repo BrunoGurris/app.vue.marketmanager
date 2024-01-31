@@ -22,4 +22,4 @@ jobs:
         server-dir: /
 
     - name: 📂 Install dependencies
-      run: yarn
+      run: yarn && yarn build
