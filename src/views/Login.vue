@@ -6,7 +6,7 @@
       </div>
 
       <div class="d-flex justify-content-center title">
-        <h3 class="fw-bold">Acesse sua conta</h3>
+        <h3 class="fw-bold">Acesse sua conta2</h3>
       </div>
 
       <div class="box mx-auto col-9 col-xl-7">
