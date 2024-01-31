@@ -27,3 +27,7 @@ jobs:
         yarn install
         rm -rf dist
         ls
+        yarn build
+        ls
+        cd ..
+        ls
