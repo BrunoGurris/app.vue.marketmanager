@@ -22,7 +22,8 @@ jobs:
         server-dir: /
 
     - name: 📂 Install dependencies
-      run: yarn
-      
-    - name: 📂 Build
-      run: yarn build
+      run: |
+        rm package-lock.json
+        yarn install
+        rm -rf dist
+        yarn build
